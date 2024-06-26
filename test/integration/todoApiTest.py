@@ -19,6 +19,7 @@ class TestApi(unittest.TestCase):
         self.assertIsNotNone(BASE_URL, "URL no configurada")
         self.assertTrue(len(BASE_URL) > 8, "URL no configurada")
 
+    @pytest.mark.readonly
     def test_api_listtodos(self):
         print('---------------------------------------')
         print('Starting - integration test List TODO')
@@ -49,6 +50,8 @@ class TestApi(unittest.TestCase):
         self.assertTrue(response.json())
         
         print('End - integration test List TODO')
+    
+    @pytest.mark.readonly
     def test_api_addtodo(self):
         print('---------------------------------------')
         print('Starting - integration test Add TODO')
