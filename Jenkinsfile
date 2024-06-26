@@ -6,10 +6,6 @@ pipeline {
         PYTHONPATH = "."
     }
 
-    options {
-        skipDefaultCheckout true
-    }
-
     stages {
         stage("Get code") {
             steps {
@@ -50,16 +46,22 @@ pipeline {
         }
         stage("Promote"){
             steps{
-                sh '''
-                    git checkout master
-                    git merge --no-ff --no-commit develop
-                    git reset HEAD Jenkinsfile
-                    git checkout -- Jenkinsfile
-                    git commit -m "merged develop branch"
-                    git push origin master
-                '''
+                withCredentials([ gitUsernamePassword(credentialsId: 'github_01', gitToolName: 'Default')]) {
+                    sh '''
+                        git checkout master
+                        git merge --no-ff --no-commit develop
+                        git reset HEAD Jenkinsfile
+                        git checkout -- Jenkinsfile
+                        git commit -m "merged develop branch"
+                        git push origin master
+                    '''
+                }
             }
         }
     }
+    post {
+        always {
+            cleanWs()
+        }
+    }
 }
-
