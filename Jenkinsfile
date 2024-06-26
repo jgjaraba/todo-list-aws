@@ -14,7 +14,7 @@ pipeline {
         stage("Get code") {
             steps {
                 git branch: 'master', credentialsId: 'github_01', url: 'https://github.com/jgjaraba/todo-list-aws.git'
-                wget https://raw.githubusercontent.com/jgjaraba/todo-list-aws_config/production/samconfig.toml
+                sh "wget https://raw.githubusercontent.com/jgjaraba/todo-list-aws_config/production/samconfig.toml"
             }
         }
         stage("Deploy"){
