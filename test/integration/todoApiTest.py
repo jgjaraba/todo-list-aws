@@ -50,8 +50,6 @@ class TestApi(unittest.TestCase):
         self.assertTrue(response.json())
         
         print('End - integration test List TODO')
-    
-    @pytest.mark.readonly
     def test_api_addtodo(self):
         print('---------------------------------------')
         print('Starting - integration test Add TODO')
@@ -77,6 +75,7 @@ class TestApi(unittest.TestCase):
             response.status_code, 200, "Error en la petición API a {url}"
         )
         print('End - integration test Add TODO')
+    @pytest.mark.readonly
     def test_api_gettodo(self):
         print('---------------------------------------')
         print('Starting - integration test Get TODO')
