@@ -84,7 +84,9 @@ pipeline {
                         git checkout master
                         git merge --no-ff --no-commit develop
                         git reset HEAD Jenkinsfile
+                        git reset HEAD Jenkinsfile_agentes
                         git checkout -- Jenkinsfile
+                        git checkout -- Jenkinsfile_agentes
                         git commit -m "merged develop branch"
                         git push origin master
                     '''
