@@ -5,6 +5,10 @@ pipeline {
         PATH="/var/lib/jenkins/workspace/CP1-D-reto1/venv/bin:/var/lib/jenkins/.local/bin:$PATH"
         PYTHONPATH = "."
     }
+    
+    options {
+        skipDefaultCheckout true
+    }
 
     stages {
         stage("Get code") {
